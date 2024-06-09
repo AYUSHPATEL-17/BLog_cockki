@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+
+<body class=" items-center justify-center ">
+    <header class="shadow container  flex justify-between  items-baseline border-b border-white bg-white py-3 mb-8">
+
+        <div class="text-4xl font-bold text-dark  display-4 ">Blogin</div>
+        <nav class="space-x-4">
+            <a href="#" class="text-dark  text-xl hover:text-white">Home</a>
+
+            <a href="/addUpdateBlog" class="  text-xl text-dark hover:text-white">Add Blogs</a>
+
+
+
+        </nav>
+        <a href="/logout" class=" btn  btn-primary center  text-white hover:text-white">Logout</a>
+
+    </header>
+
+    <div class="h-full">
+
+        <center>
+            <main class="w-full max-w-7xl conatiner">
+                <section class="mb-12">
+                    <h1 class="text-4xl font-bold mb-4">Hello regularly updated content about a topic.</h1>
+                    <p class="text-dark lead">A paragraph is a series of sentences that are organized and coherent, and
+                        are all
+                        related to a single topic.</p>
+                    <p class="mt-1 lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed quisquam maiores,
+                        deleniti odit voluptatum sequi repellat inventore repellendus vel harum dolores distinctio enim
+                        iusto voluptatem assumenda possimus blanditiis dolorum eligendi quae nulla quis? Repellendus
+                        dolore doloremque laudantium aliquam? Tempore velit, consectetur delectus, pariatur quia autem
+                        animi, provident fugiat quas at rem assumenda fugit alias. Mollitia temporibus dicta quos amet,
+                        deleniti ut beatae atque harum ullam quam maiores vitae minus quasi at. Odio quos aut aspernatur
+                        nesciunt nostrum velit placeat, vitae quae deserunt eaque molestias ex veniam minima commodi
+                        nulla sed! Voluptate, rem corrupti. Id repudiandae sunt laborum repellendus quasi fugit.</p>
+                </section>
+                <hr/>
+
+                <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-3  mb-5">
+                    <% blogs.map((blog)=>{ %>
+                        <article class="p-3 rounded-xl shadow-2xl border-2 border-primary border-left-0 border-right-0 border-top-danger ">
+                            <h2 class="text-2xl text-left font-bold my-2">
+                                <%= blog.title %>
+                            </h2>
+                            <img src="<%= blog.image %>" class="rounded-lg w-full h-40 " alt="">
+                           
+                            <h3 class="text-xl text-left font-semibold mb-2 mt-2">
+                                <%= blog.author %>
+                            </h3>
+                            <p class="text-gray text-left lead truncate">
+                                <%= blog.content %>
+                            </p>
+                            <div class="flex justify-around mt-2 mb-2">
+                                <a href="/addUpdateBlog?id=<%= blog._id %>"
+                                    class="btn  btn-primary center text-white hover:text-white mt-4 block">Edit
+                                    blog</a>
+                                <a href="/deleteBlog?id=<%= blog._id %>"
+                                    class="btn  btn-danger center text-white hover:text-white mt-4 block">Delete
+                                    </a>
+                            </div>
+                        </article>
+                        <% }) %>
+
+                </section>
+            </main>
+
+        </center>
+
+
+    </div>
+</body>
+
+</html>
