@@ -27,9 +27,15 @@ const logInPage = (req, res) => {
 }
 
 const logout = (req, res) => {
-    res.clearCookie('USER');
-    res.redirect('/logIn');
-}
+    req.logOut((err) => {
+        if (err) {
+            console.log(err);
+            return false;
+        }
+        console.log('logout Successfully');
+        return res.redirect('/login')
+    })
+};
 
 const home = async (req, res) => {
     try {
@@ -77,6 +83,7 @@ const deleteBlog = async (req, res) => {
 // POST Data Section
 
 const signUp = async (req, res) => {
+    console.log(req.body);
     let data = await user.create(req.body);
     return res.redirect("/logIn");
 }
@@ -86,7 +93,7 @@ const logIn = async (req, res) => {
     let User = await user.findOne({ email: email })
 
     if (User && User.password === password) {
-        return res.cookie('USER', User.id).redirect("/")
+        return res.redirect("/")
     } else {
         console.log("Email or password must be wrong");
         return res.redirect("/logIn")
